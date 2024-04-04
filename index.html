@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Kisanmadad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .left {
+            font-weight: 400;
+        }
+
+        .text-box {
+            background-color: #f4f4f4;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 40px;
+            color: black;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: lightgreen;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .search-button {
+            text-decoration: none;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            /* Add margin to the bottom of the search button */
+            display: inline-block;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer {
+            max-width: 1200px;
+            margin: 10px auto;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            /* Use flexbox to display items horizontally */
+        }
+
+        .footer-links ul li {
+            display: inline-block;
+        }
+
+        .footer-links ul li:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            /* Adjust icon size if needed */
+            display: flex;
+            /* Use flexbox for icon and label alignment */
+            align-items: center;
+            /* Align icon and text vertically */
+        }
+
+        .footer-links ul li i {
+            margin-right: 5px;
+        }
+
+        .footer-rights {
+            font-size: 14px;
+        }
+
+        .rightsection img {
+            width: 120%;
+            /* Adjust the width as needed */
+            border-radius: 10px;
+            /* Add border radius for rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Add box shadow for a subtle lift effect */
+            margin: 20px 0 20px -100px; 
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <canvas id="canvas"></canvas>
+            <div class="left">Kisanmadad</div>
+            <div class="right">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="../main/main.php">Login</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                    <li><a href="error.php">Feedback</a></li>
+                    <li><a href="repo.php">Report</a></li>
+
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        <section class="firstsection">
+            <div class="leftsection">
+                Hello, We help you grow your <span class="purple">Farms</span>
+                <div>and provide information about</div>
+                <span id="element"></span>
+            </div>
+            <div class="rightsection">
+                <img src="img3.jpg">
+
+            </div>
+        </section>
+        <hr>
+
+    </main>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Vegetables', 'Fruits', 'Seeds', 'Fertilizers', '&amp;Soils'],
+            typeSpeed: 100,
+        });
+    </script>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = 50;
+        canvas.height = 100;
+
+        // Function to draw a leaf
+        function drawLeaf(x, y, size) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x - size / 2, y - size / 2, x - size / 2, y + size / 2, x, y + size);
+            ctx.bezierCurveTo(x + size / 2, y + size / 2, x + size / 2, y - size / 2, x, y);
+            ctx.fillStyle = '#2ecc71'; // Green color
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // Draw the leaf
+        drawLeaf(canvas.width / 2, canvas.height / 2, 50);
+    </script>
+
+    <div>
+        <p class="text-box">There are different types of farmers. And
+            they all have equal significance. First are the farmers who grow a crop like wheat, barley, rice, etc. Since
+            the maximum intake in the Indian houses is of wheat and rice. So, the cultivation of wheat and rice is much
+            in farming. Moreover, farmers who grow these crops are of prime importance. Second, are the ones who
+            cultivate fruits. These farmers have to prepare the soil for different types of fruits. Because these fruits
+            grow according to the season. Therefore the farmers need to have a great knowledge of fruits and crops.
+            There are many other farmers who grow different other types. Furthermore, they all have to work very hard to
+            get maximum harvesting.</p>
+    </div>
+
+    <center>
+        <a href="../home_page/menu.html" class="search-button">
+            <button> SEARCH
+                <span></span>
+            </button>
+        </a>
+    </center>
+
+    <center>
+        <video width="45%" controls loop autoplay style="margin-top: 30px; margin-bottom: 30px;">
+            <source src="vid.mp4" type="video/mp4">
+            <track label="English" kind="subtitles" srclang="en" src="eng.vtt" default>
+            <track label="Marathi" kind="subtitles" srclang="mr" src="mra.vtt">
+
+        </video>
+
+    </center>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                </ul>
+            </div>
+            <div class="footer-rights">
+                www.Kisanmadad.com | All rights reserved
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Menu Page
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <link rel='stylesheet'
+    href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background: #FFC700;
+      box-shadow: inset 0 0 20vmin 0 #585247;
+    }
+
+    .wrap {
+      position: relative;
+      width: 80vmin;
+      height: 80vmin;
+      background: inherit;
+      transform: scale(0.2) translateZ(0px);
+      opacity: 0;
+      transition: transform .5s, opacity .5s;
+      margin: 0 auto;
+    }
+
+    a {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 47.5%;
+      height: 47.5%;
+      overflow: hidden;
+      transform: scale(.5) translateZ(0px);
+      background: #8d7330;
+    }
+
+    a div {
+      height: 100%;
+      background-size: cover;
+      opacity: .5;
+      transition: opacity .5s;
+      border-radius: inherit;
+
+    }
+
+    a:nth-child(1) {
+      border-radius: 40vmin 0 0 0;
+      transform-origin: 110% 110%;
+      transition: transform .4s .15s;
+    }
+
+    a:nth-child(1) div {
+      background-image: url('https://media.istockphoto.com/id/174429248/photo/fresh-vegetables.jpg?s=612x612&w=0&k=20&c=fxlgOIET7gKa8M3rwkV974aUfB0gVpWiJQwUoxA4dtQ=');
+    }
+
+    a:nth-child(2) {
+      border-radius: 0 40vmin 0 0;
+      left: 52.5%;
+      transform-origin: -10% 110%;
+      transition: transform .4s .2s;
+    }
+
+    a:nth-child(2) div {
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyKHVaTzcnOg757kHD9ro0xnnLB7ZlQ4bCnAnlIrUfWQ&s');
+    }
+
+
+    a:nth-child(3) {
+      border-radius: 0 0 0 40vmin;
+      top: 52.5%;
+      transform-origin: 110% -10%;
+      transition: transform .4s .25s;
+    }
+
+    a:nth-child(3) div {
+      background-image: url('https://casamiatours.com/wp-content/uploads/2021/03/Schermata-2021-03-19-alle-19.31.44-600x449.png');
+    }
+
+    a:nth-child(4) {
+      border-radius: 0 0 40vmin 0;
+      top: 52.5%;
+      left: 52.5%;
+      transform-origin: -10% -10%;
+      transition: transform .4s .3s;
+    }
+
+    a:nth-child(4) div {
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_t4QJlxpteiMflH8SkmM4urm4Tsa3vNbogS4xl6Wrmw&s');
+    }
+
+
+    a:nth-child(5) {
+      border-radius: 50vmin;
+      width: 55%;
+      height: 55%;
+      top: 22.5%;
+      left: 22.5%;
+      transform-origin: -10% -10%;
+      transform: scale(1);
+      box-shadow: 0 0 0 5vmin #E3DfD2;
+
+    }
+
+    a:nth-child(5) div {
+      background-image: url('https://www.1800flowers.com/blog/wp-content/uploads/2021/05/Birthday-Flowers-Colors.jpg');
+
+    }
+
+    span {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      top: 45vmin;
+      width: 10vmin;
+      height: 10vmin;
+      border-radius: 100%;
+      background: #585247;
+      transform: translateZ(0px);
+    }
+
+    span span {
+      position: absolute;
+      width: 60%;
+      height: 3px;
+      background: #ACA696;
+      left: 20%;
+      top: 50%;
+      border-radius: 0;
+    }
+
+    span span:after,
+    span span:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -1.5vmin;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+    }
+
+    span span:after {
+      top: 1.5vmin;
+    }
+
+    span:hover+.wrap,
+    .wrap:hover {
+      transform: scale(0.8) translateZ(0px);
+      opacity: 1;
+    }
+
+    span:hover+.wrap a,
+    .wrap:hover a {
+      transform: scale(1) translateZ(0px);
+    }
+
+    a:hover div {
+      opacity: 1;
+      transform: translateZ(0px);
+    }
+
+    button {
+      border: none;
+      display: block;
+      position: relative;
+      padding: 0.7em 2.4em;
+      font-size: 18px;
+      background: transparent;
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
+      color: green;
+      z-index: 1;
+      font-family: inherit;
+      font-weight: 500;
+    }
+
+    button span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: -1;
+      border: 4px solid green;
+    }
+
+    button span::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 8%;
+      height: 500%;
+      background: var(--lightgray);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-60deg);
+      transition: all 0.3s;
+    }
+
+    button:hover span::before {
+      transform: translate(-50%, -50%) rotate(-90deg);
+      width: 100%;
+      background: royalblue;
+    }
+
+    button:hover {
+      color: white;
+    }
+
+    button:active span::before {
+      background: #2751cd;
+    }
+
+    .btn {
+      margin-top: 20;
+      margin-bottom: 30;
+    }
+
+    .text-box {
+      background-color: #f4f4f4;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      margin-bottom: 40px;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background-color: lightgreen;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    #addInfoButton {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      /* Green */
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #addInfoButton:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+
+  <span><span></span></span>
+  <div class="wrap" id="akme" onclick="bgchange()">
+    <a href="../description_page/veggie.php">
+      <div></div>
+    </a>
+    <a href="../description_page/fruits.php">
+      <div></div>
+    </a>
+    <a href="../description_page/fert.php">
+      <div></div>
+    </a>
+    <a href="../description_page/seed.php">
+      <div></div>
+    </a>
+    <a href="../description_page/flowers.php">
+      <div></div>
+    </a>
+
+  </div>
+  <script src="script.js"> </script>
+</body>
+<button id="addInfoButton" onclick="redirectToMain()">Add Info</button>
+<div style="margin-top: 20px; margin-bottom: 20px; color: rgb(110, 236, 61); margin-left: 20px; margin-right: 20px ;">
+  What we strive to achieve:</div>
+<div>
+  <p class="text-box">
+    Taking input to improve our website is not just a strategy; it's a commitment to fostering a user-centric digital
+    environment where every click, scroll, and interaction matters. In today's ever-evolving digital landscape,
+    where attention spans are fleeting and competition is fierce, listening to our users isn't just a choice; it's a
+    necessity. Every input, whether it's a suggestion, complaint, or praise,
+    holds invaluable insights into how we can refine and enhance our online presence.At the heart of this endeavor lies
+    the recognition that our website is more than just lines of code and pixels on a screen; it's a gateway to
+    meaningful interactions and experiences.
+    By actively seeking input from our users, we demonstrate a willingness to engage in a continuous dialogue aimed at
+    creating a platform that truly serves their needs and exceeds their expectations. Whether through surveys, feedback
+    forms, or direct communication channels,
+    we provide avenues for users to voice their opinions and contribute to the ongoing evolution of our digital
+    ecosystem.
+    The value of taking input to improve our website extends far beyond mere cosmetic enhancements. It's about
+    understanding the underlying motivations, preferences, and pain points of our users. Through careful analysis of
+    their feedback, we gain invaluable insights into how they navigate our website,
+    what features resonate with them, and where improvements are needed. This user-centric approach allows us to tailor
+    our content, design, and functionality to better align with their expectations, ultimately fostering deeper
+    engagement and loyalty.
+    Integrating a user-friendly component add button onto our website is about empowering every visitor, regardless of
+    technical expertise,
+    to engage with our platform effortlessly. Positioned prominently within the interface, this button serves as a
+    beacon of simplicity, inviting users to enhance their experience with just a click.
+    Its design is intuitive, with clear visual cues and concise labeling that leave no room for confusion.
+    This is our user input button please feel free to share your information so we can improve our data. Thank you
+  </p>
+</div>
+
+<script>
+  function redirectToMain() {
+    window.location.href = '../main/main.php';
+}
+</script>
+
+</html>

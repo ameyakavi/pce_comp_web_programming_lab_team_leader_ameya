@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Leaflet Map with Features</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: #555;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Change color of links on hover */
+        nav a:hover {
+            color: lightgreen;
+        }
+
+        #map-container {
+            display: flex;
+            flex-direction: row;
+            background-color: purple;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #map {
+            flex: 1;
+            height: 580px;
+            border-radius: 8px;
+        }
+
+        .right {
+            width: 30%;
+            padding: 20px;
+            background-color: purple;
+            border: 5px solid black;
+            color: white;
+            margin-left: 20px;
+            border-radius: 10px;
+        }
+
+        .right h3 {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>About Us</h1>
+    </header>
+    <nav>
+        <a href="../home_page/index.html">Home</a>
+        <a href="aboutus.html">About</a>
+        <a href="../home_page/contact.html">Contact</a>
+    </nav>
+    <div id="map-container">
+        <div id="map"></div>
+        <div class="right">
+            <h3>Visit Us</h3>
+            <div id="address-info">
+                <!-- Address will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Creating map options
+        var mapOptions = {
+            center: [18.9902, 73.1277],
+            zoom: 10
+        }
+
+        // Creating a map object
+        var map = new L.map('map', mapOptions);
+
+        // Creating a Layer object
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+        // Adding layer to the map
+        map.addLayer(layer);
+
+        // Address data for locations
+        var addresses = {
+            'Panvel': '9876, sector 89<br>Panvel<br>Navi Mumbai,<br>Maharashtra,<br>India,<br>410206',
+            'Mumbai': '1234, street 45<br>XYZ neighborhood<br>Mumbai,<br>Maharashtra,<br>India,<br>400001'
+        };
+
+        // Function to update the right container with address
+        function updateRightContainer(address) {
+            document.getElementById('address-info').innerHTML = address;
+        }
+
+        // Creating markers for two locations
+        var location1 = L.marker([18.9902, 73.1277]).addTo(map);
+        var location2 = L.marker([19.0760, 72.8777]).addTo(map);
+
+
+        location1.bindPopup('Panvel').openPopup();
+        location2.bindPopup('Mumbai').openPopup();
+
+        // Event listener for marker clicks
+        location1.on('click', function () {
+            updateRightContainer(addresses['Panvel']);
+        });
+
+        location2.on('click', function () {
+            updateRightContainer(addresses['Mumbai']);
+        });
+    </script>
+</body>
+
+</html>
